@@ -19,6 +19,7 @@
         "gulp-clean-css": "^3.3.1",
         "gulp-concat": "^2.6.1",
         "gulp-connect": "^5.0.0",
+        "gulp-imagemin": "^4.1.0",
         "gulp-livereload": "^3.8.1",
         "gulp-postcss": "^7.0.0",
         "gulp-rename": "^1.2.2",
@@ -27,6 +28,6 @@
         "gulp-sass": "^3.1.0",
         "gulp-sequence": "^1.0.0",
         "gulp-uglify": "^2.1.2",
-        "gulp-imagemin": "^4.1.0"
+        "webpack-stream": "^5.2.1"
     }
 }

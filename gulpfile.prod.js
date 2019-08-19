@@ -21,17 +21,13 @@ function prod() {
     gulp.task('clean', function(cb) {
         return del(['./rev', Config.dist_files], cb);
     });
-    // 压缩js
-    gulp.task('uglifyRename', function() {
+    // js task
+    gulp.task('convertJs', function() {
         return gulp.src(Config.js.src)
             .pipe(babel({
                 presets: ['env']
             }))
-            .pipe(concat("all.js"))
             .pipe(uglify()) //压缩
-            .pipe(rename({
-                suffix: '.min'
-            }))
             .pipe(rev())
             .pipe(gulp.dest(Config.js.dist))
             .pipe(rev.manifest())
@@ -39,20 +35,16 @@ function prod() {
 
     });
 
-    //编译sass并且压缩
-    gulp.task('sass2css', function() {
+    //css task
+    gulp.task('convertCss', function() {
         //postcss plugin
         var plugins = [
             autoprefixer({ browsers: ['last 3 version'], cascade: false })
         ];
         return gulp.src(Config.sass.src)
             .pipe(sass())
-            .pipe(concat("all.css"))
             .pipe(postcss(plugins)) //带上厂商前缀，对相关css做兼容处理
             .pipe(minifyCss())
-            .pipe(rename({
-                suffix: '.min'
-            }))
             .pipe(rev())
             .pipe(gulp.dest(Config.sass.dist))
             .pipe(rev.manifest())
@@ -61,20 +53,19 @@ function prod() {
 
 
 
-    //copy html 文件
-    gulp.task('copyHtml', ['uglifyRename', 'sass2css'], function() {
+    //html task
+    gulp.task('convertHtml', ['convertJs', 'convertCss'], function() {
         return gulp.src(["./rev/**/*.json", Config.html.src])
             //执行文件内引用名的替换
             .pipe(revCollector({
                 replaceReved: true
             }))
             .pipe(gulp.dest(Config.html.dist))
-
     });
 
 
-    //copy img 文件
-    gulp.task('copyImg', function() {
+    //img task
+    gulp.task('convertImg', function() {
         gulp.src(Config.img.src)
             .pipe(imagemin([
                 imagemin.gifsicle({ interlaced: true }),
@@ -88,20 +79,16 @@ function prod() {
                 })
             ]))
             .pipe(gulp.dest(Config.img.dist))
-
     })
 
 
     // copy lib下的所有文件
     gulp.task('copylib', function() {
         gulp.src(Config.lib.src)
-
         .pipe(gulp.dest(Config.lib.dist))
-
-
     })
-    gulp.task('build', ['uglifyRename', 'copyImg', 'copylib', 'sass2css'], function() {
-        gulp.start('copyHtml');
+    gulp.task('build', ['convertJs', 'convertImg', 'copylib', 'convertCss'], function() {
+        gulp.start('convertHtml');
         console.log("生产环境包 打包完成！")
     });
 

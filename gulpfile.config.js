@@ -15,7 +15,7 @@ var Config = {
         dist: DIST_DIR + 'lib' // lib文件build后存放的目录：./dist/lib  
     },
     sass: {
-        src: SRC_DIR + 'sass/**/*.scss', // SASS目录：./src/sass/  
+        src: SRC_DIR + 'sass/**/*.*css', // SASS目录：./src/sass/  
         dist: DIST_DIR + 'css' // SASS文件生成CSS后存放的目录：./dist/css  
     },
     js: {
