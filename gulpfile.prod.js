@@ -1,18 +1,19 @@
 var gulp = require('gulp'),
     Config = require('./gulpfile.config.js'),
     uglify = require('gulp-uglify'),
-    rename = require('gulp-rename'),
+    // rename = require('gulp-rename'),
     sass = require('gulp-sass'),
     minifyCss = require('gulp-clean-css'),
     postcss = require('gulp-postcss'),
     autoprefixer = require('autoprefixer'),
-    concat = require('gulp-concat'),
+    // concat = require('gulp-concat'),
     del = require('del'),
     babel = require('gulp-babel'),
-    connect = require('gulp-connect'),
+    // connect = require('gulp-connect'),
     rev = require('gulp-rev'),
     revCollector = require('gulp-rev-collector'),
-    gulpSequence = require('gulp-sequence'),
+    // gulpSequence = require('gulp-sequence'),
+    htmlmin = require('gulp-htmlmin')
     imagemin = require('gulp-imagemin');
 // 开发环境下
 function prod() {
@@ -60,6 +61,7 @@ function prod() {
             .pipe(revCollector({
                 replaceReved: true
             }))
+            .pipe(htmlmin({ collapseWhitespace: true }))
             .pipe(gulp.dest(Config.html.dist))
     });
 

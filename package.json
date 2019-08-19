@@ -1,7 +1,7 @@
 {
-    "name": "mes-app",
+    "name": "super",
     "version": "1.0.0",
-    "description": "智能制造mes-app",
+    "description": "",
     "main": "main.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,6 +19,7 @@
         "gulp-clean-css": "^3.3.1",
         "gulp-concat": "^2.6.1",
         "gulp-connect": "^5.0.0",
+        "gulp-htmlmin": "^5.0.1",
         "gulp-imagemin": "^4.1.0",
         "gulp-livereload": "^3.8.1",
         "gulp-postcss": "^7.0.0",
@@ -27,7 +28,6 @@
         "gulp-rev-collector": "^1.2.4",
         "gulp-sass": "^3.1.0",
         "gulp-sequence": "^1.0.0",
-        "gulp-uglify": "^2.1.2",
-        "webpack-stream": "^5.2.1"
+        "gulp-uglify": "^2.1.2"
     }
 }
