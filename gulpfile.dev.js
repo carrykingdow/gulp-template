@@ -17,7 +17,11 @@ function dev() {
 
     //web服务器
     gulp.task('webserver', function() {
-        connect.server({ livereload: true });
+        connect.server({ 
+            livereload: true ,
+            directoryListing: true,
+            open: true
+        });
     });
 
     // js task
@@ -78,7 +82,7 @@ function dev() {
         gulp.watch(Config.html.src, ['convertHtml:dev']); //监听html
         gulp.watch(Config.img.src, ['convertImg:dev']); //监听img
         gulp.watch(Config.lib.src, ['copylib:dev']); //监听lib
-        console.log("--------开发环境包打包完成------------")
+        console.log("🚀🚀🚀  dev打包成功！ 🚀🚀🚀  ")       
     });
 
 }

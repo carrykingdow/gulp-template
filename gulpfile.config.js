@@ -1,5 +1,5 @@
-var SRC_DIR = './src/'; // 源文件目录  
-var DIST_DIR = './dist/'; // 文件处理后存放的目录  
+var SRC_DIR = '../src/'; // 源文件目录  
+var DIST_DIR = '../dist/'; // 文件处理后存放的目录  
 var DIST_FILES = DIST_DIR + '**'; // 目标路径下的所有文件  
 
 var Config = {

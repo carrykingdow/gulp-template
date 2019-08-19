@@ -91,7 +91,7 @@ function prod() {
     })
     gulp.task('build', ['convertJs', 'convertImg', 'copylib', 'convertCss'], function() {
         gulp.start('convertHtml');
-        console.log("生产环境包 打包完成！")
+        console.log("🎯🎯🎯   build成功！    🎯🎯🎯")
     });
 
 }
