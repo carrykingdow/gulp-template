@@ -1,4 +1,4 @@
-# product_board
+# gulp template
 
 #### 项目介绍
 基于gulp的项目模板
