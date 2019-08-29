@@ -1,8 +1,8 @@
-var SRC_DIR = '../src/'; // 源文件目录  
-var DIST_DIR = '../dist/'; // 文件处理后存放的目录  
+var SRC_DIR = './src/'; // 源文件目录  
+var DIST_DIR = './dist/'; // 文件处理后存放的目录  
 var DIST_FILES = DIST_DIR + '**'; // 目标路径下的所有文件  
 
-var Config = {
+ var Config = {
     src: SRC_DIR,
     dist: DIST_DIR,
     dist_files: DIST_FILES,
@@ -15,7 +15,7 @@ var Config = {
         dist: DIST_DIR + 'lib' // lib文件build后存放的目录：./dist/lib  
     },
     sass: {
-        src: SRC_DIR + 'sass/**/*.*css', // SASS目录：./src/sass/  
+        src: SRC_DIR + 'sass/**/*.scss', // SASS目录：./src/sass/  
         dist: DIST_DIR + 'css' // SASS文件生成CSS后存放的目录：./dist/css  
     },
     js: {
@@ -27,5 +27,4 @@ var Config = {
         dist: DIST_DIR + 'img' // img文件build后存放的目录：./dist/img  
     }
 };
-
-module.exports = Config;
+module.exports = Config; 

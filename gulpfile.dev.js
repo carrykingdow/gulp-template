@@ -20,7 +20,6 @@ function dev() {
         connect.server({ 
             livereload: true ,
             directoryListing: true,
-            open: true
         });
     });
 
@@ -68,7 +67,7 @@ function dev() {
 
     // copy lib下的所有文件
     gulp.task('copylib:dev', function() {
-        gulp.src(Config.lib.src)
+         gulp.src(Config.lib.src)
             .pipe(gulp.dest(Config.lib.dist))
             .pipe(livereload());
 
