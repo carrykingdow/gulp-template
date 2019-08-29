@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     autoprefixer = require('autoprefixer'),
     del = require('del'),
     babel = require('gulp-babel'),
+    fileinclude = require('gulp-file-include'),
     connect = require('gulp-connect');
 
 // 开发环境下
@@ -50,6 +51,11 @@ function dev() {
     //html task
     gulp.task('convertHtml:dev', function() {
         gulp.src(Config.html.src)
+            .pipe(fileinclude({
+                prefix: '@@',//变量前缀 @@include
+                basepath: './src/_include',//引用文件路径
+                indent:true//保留文件的缩进
+            }))
             .pipe(gulp.dest(Config.html.dist))
             .pipe(livereload());
 
@@ -78,10 +84,12 @@ function dev() {
         livereload.listen();
         gulp.watch(Config.js.src, ['convertJs:dev']); //监听js文件
         gulp.watch(Config.sass.src, ['convertCss:dev']); //监听 css
-        gulp.watch(Config.html.src, ['convertHtml:dev']); //监听html
+        gulp.watch([Config.html.src, './src/_include/*'], ['convertHtml:dev']); //监听html
         gulp.watch(Config.img.src, ['convertImg:dev']); //监听img
         gulp.watch(Config.lib.src, ['copylib:dev']); //监听lib
-        console.log("🚀🚀🚀  dev打包成功！ 🚀🚀🚀  ")       
+        console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀")       
+        console.log("             dev打包成功！                ")       
+        console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀")       
     });
 
 }

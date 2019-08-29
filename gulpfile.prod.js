@@ -13,7 +13,8 @@ var gulp = require('gulp'),
     rev = require('gulp-rev'),
     revCollector = require('gulp-rev-collector'),
     // gulpSequence = require('gulp-sequence'),
-    htmlmin = require('gulp-htmlmin')
+    htmlmin = require('gulp-htmlmin'),
+    fileinclude = require('gulp-file-include')
     imagemin = require('gulp-imagemin');
 // 开发环境下
 function prod() {
@@ -57,9 +58,15 @@ function prod() {
     //html task
     gulp.task('convertHtml', ['convertJs', 'convertCss'], function() {
         return gulp.src(["./rev/**/*.json", Config.html.src])
+
             //执行文件内引用名的替换
             .pipe(revCollector({
                 replaceReved: true
+            }))
+            .pipe(fileinclude({
+                prefix: '@@',//变量前缀 @@include
+                basepath: './src/_include',//引用文件路径
+                indent:true//保留文件的缩进
             }))
             .pipe(htmlmin({ collapseWhitespace: true }))
             .pipe(gulp.dest(Config.html.dist))
@@ -91,7 +98,9 @@ function prod() {
     })
     gulp.task('build', ['convertJs', 'convertImg', 'copylib', 'convertCss'], function() {
         gulp.start('convertHtml');
-        console.log("🎯🎯🎯   build成功！    🎯🎯🎯")
+        console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀")       
+        console.log("             build 打包成功！                ")       
+        console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀")    
     });
 
 }
