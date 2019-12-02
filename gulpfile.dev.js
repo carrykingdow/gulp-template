@@ -7,6 +7,7 @@ var gulp = require('gulp'),
   del = require('del'),
   babel = require('gulp-babel'),
   fileinclude = require('gulp-file-include'),
+  Proxy = require("gulp-connect-proxy"),
   connect = require('gulp-connect');
 
 // 开发环境下
@@ -21,6 +22,12 @@ function dev() {
     connect.server({
       livereload: true,
       directoryListing: true,
+      port: 9527,
+      middleware: function(connect, opt) {
+        opt.route = "/proxy";
+        var proxy = new Proxy(opt);
+        return [proxy];
+      }
     });
   });
 
