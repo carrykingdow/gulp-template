@@ -18,6 +18,13 @@
 7. 生产环境资源名做了转义处理，每次打包都会生成最新的资源文件(`css`,`js`),避免缓存。
 8. 生产环境`html`做了压缩处理，减少页面体积。
 9. 为了方便调试，加入了代理模式，防止跨域请求影响心情
+  设置代理demo
+  ```
+  //假设请求域名为这个
+  let baseUrl = "https://www.google.com/";
+  //代理域名应该设置成这样 才可以正常使用
+  let devBaseUrl = "http://localhost:8080/proxy/www.google.com/";
+  ```
 
 **happy coding !**
 
