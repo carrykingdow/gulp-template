@@ -10,7 +10,7 @@
 
 #### 一些说明
 1. 在开发环境中，支持hotReload热加载（不用刷新浏览器，只要保存文件，浏览器就能自动刷新）
-2. 开发环境预览的默认地址是`localhost:9527/dist/`
+2. 开发环境预览的默认地址是`localhost:9527/html/`
 3. 再生产环境中,对`src`下的`img`文件下的图片进行了压缩，减小图片的体积
 4. 使用了`file-include`进行模板编辑。可以支持`html`魔板输出。[file-include](https://www.npmjs.com/package/gulp-file-include)
 5. 取消文件合并，减少文件大小。按需引用。也可以安装 `gulp-contact`进行文件合并。
@@ -18,12 +18,43 @@
 7. 生产环境资源名做了转义处理，每次打包都会生成最新的资源文件(`css`,`js`),避免缓存。
 8. 生产环境`html`做了压缩处理，减少页面体积。
 9. 为了方便调试，加入了代理模式，防止跨域请求影响心情
+**因为gulp-connet-proxy**这个插件不支持post请求，所以将代理插件换成了`http-proxy-middleware`
+
   设置代理demo
   ```
+  //需要将`gulpfile.dev.js`中修改成指定的代理域名
+  
+  ```
+  gulp.task("webserver", function() {
+    connect.server({
+      root: "./dist",
+      port: 8080,
+      livereload: true,
+      middleware: function(connect, opt) {
+        return [
+          proxy("/proxy/", {
+            target: "https://www.google.com/",
+            changeOrigin: true,
+            pathRewrite: {
+              "^/proxy/": ""
+            }
+          })
+          // proxy('/otherServer', {
+          //     target: 'http://IP:Port',
+          //     changeOrigin:true
+          // })
+        ];
+      }
+    });
+  });
+  
+  ```
+  //api.js
+  
   //假设请求域名为这个
   let baseUrl = "https://www.google.com/";
-  //代理域名应该设置成这样 才可以正常使用
-  let devBaseUrl = "http://localhost:8080/proxy/www.google.com/";
+  //代理域名应该设置成这样就可以正常使用
+  let devBaseUrl = "/proxy/";
   ```
 
 **happy coding !**
