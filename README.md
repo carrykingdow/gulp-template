@@ -23,8 +23,6 @@
   设置代理demo
   ```
   //需要将`gulpfile.dev.js`中修改成指定的代理域名
-  
-  ```
   gulp.task("webserver", function() {
     connect.server({
       root: "./dist",
@@ -47,6 +45,9 @@
       }
     });
   });
+  
+  ```
+  
   
   ```
   //api.js
