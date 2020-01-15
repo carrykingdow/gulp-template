@@ -25,7 +25,15 @@ function prod() {
       .pipe(babel({
         presets: ['env']
       }))
-      .pipe(uglify()) //压缩
+      .pipe(uglify(
+        {
+          compress: {
+              warnings: false,
+              drop_console: true,  // 过滤 console
+              drop_debugger: true  // 过滤 debugger
+          }
+        }
+       )) //压缩
       .pipe(rev())
       .pipe(gulp.dest(Config.js.dist))
       .pipe(rev.manifest())
